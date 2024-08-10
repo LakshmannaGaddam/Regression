@@ -3,10 +3,11 @@
 import argparse
 import pandas as pd
 import joblib
-from sklearn.linear_model import LinearRegression
 import json
 
-def train(input_file, model_file):
+from sklearn.linear_model import LinearRegression
+
+def train(input_file, model_file, equation_file):
     # Load data
     df = pd.read_csv(input_file)
     
@@ -38,6 +39,10 @@ def train(input_file, model_file):
     equation = generate_model_equation(coefficients, intercept, feature_names)
     print("Model Equation:")
     print(equation)
+    
+    # Save model equation to file
+    with open(equation_file, 'w') as f:
+        f.write(equation)
 
 def generate_model_equation(coefficients, intercept, feature_names):
     terms = [f"{coef:.2f} * {name}" for coef, name in zip(coefficients, feature_names)]
@@ -48,7 +53,8 @@ def generate_model_equation(coefficients, intercept, feature_names):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train a linear regression model")
     parser.add_argument('--input', type=str, required=True, help='Input CSV file')
-    parser.add_argument('--output', type=str, required=True, help='Model file')
+    parser.add_argument('--model', type=str, required=True, help='Model file')
+    parser.add_argument('--equation', type=str, required=True, help='File to save the model equation')
     args = parser.parse_args()
 
-    train(args.input, args.output)
+    train(args.input, args.model, args.equation)

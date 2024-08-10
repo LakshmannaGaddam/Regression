@@ -1,0 +1,1 @@
+Sales = -0.00 + 0.88 * TV + 0.30 * Radio + 0.00 * Newspaper
