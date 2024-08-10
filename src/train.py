@@ -16,6 +16,8 @@ def train(input_file, model_file):
     model = LinearRegression()
     model.fit(X_train, y_train)
     
+    print("Model Coefficients:", model.coef_)
+    print("Model Intercept:", model.intercept_)
     y_pred = model.predict(X_test)
     metrics = {
         'mean_squared_error': mean_squared_error(y_test, y_pred),

@@ -10,6 +10,7 @@ def evaluate(input_file, model_file, output_file):
     y = df['Sales']
     
     model = joblib.load(model_file)
+    #model.params()
     y_pred = model.predict(X)
     
     metrics = {
