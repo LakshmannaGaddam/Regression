@@ -1,0 +1,24 @@
+# params.yaml
+
+# Preprocessing parameters
+preprocessing:
+  impute_strategy: mean
+  scaling: standard
+
+# Model parameters
+model:
+  type: linear_regression
+  hyperparameters:
+    fit_intercept: true
+
+# Training parameters
+training:
+  test_size: 0.2
+  random_state: 42
+
+# Evaluation parameters
+evaluation:
+  metrics:
+    - mean_squared_error
+    - r2_score
+
